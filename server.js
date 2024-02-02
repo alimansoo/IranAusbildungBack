@@ -44,27 +44,17 @@ app.use('/register', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
-
-app.use(verifyJWT);
-app.use('/employees', require('./routes/api/employees'));
 app.use('/users', require('./routes/api/users'));
+app.use('/tags', require('./routes/api/tags'));
+app.use('/blogs', require('./routes/api/blog'));
+
+// app.use(verifyJWT);
+app.use('/employees', require('./routes/api/employees'));
 
 app.all('*', (req, res) => {
-    res.status(404);
-    if (req.accepts('html')) {
-        res.sendFile(path.join(__dirname, 'views', '404.html'));
-    } else if (req.accepts('json')) {
-        res.json({ "error": "404 Not Found" });
-    } else {
-        res.type('txt').send("404 Not Found");
-    }
+    res.status(404).json({ "status" : 404, "error": "404 Not Found" });
 });
 
 app.use(errorHandler);
-
-mongoose.connection.once('open', () => {
-    console.log('Connected to MongoDB');
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-});
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
