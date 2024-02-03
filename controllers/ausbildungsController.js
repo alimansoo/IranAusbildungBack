@@ -1,5 +1,6 @@
 const { ObjectId } = require('mongodb');
 const Ausbildung = require('../model/Ausbildung');
+const SaveAusbildung = require('../model/SaveAusbildung');
 
 const getAllAusbildungs = async (req, res) => {
     const Conn = Ausbildung();
@@ -74,6 +75,38 @@ const insertAusbildung = async (req, res) => {
     }
 }
 
+const saveAusbildung = async (req, res) => {
+    const Conn = await SaveAusbildung();
+
+    const { 
+        ausbildung_id,
+        user_id
+    } = req.body;
+
+    if (
+        !ausbildung_id ||
+        !user_id
+    ) return res.status(400).json({ 'message': 'Informations are required.' });
+
+    const duplicate = await (Conn).findOne({
+        ausbildung_id,
+        user_id
+    });
+    
+    if (duplicate) return res.status(409).json({ 'status': 409 ,'message': `conflict` });
+
+    try {
+        await (Conn).insertOne({
+            ausbildung_id,
+            user_id
+        });
+
+        res.status(201).json({ 'status': 201 , 'success': `Ausbildung saved!` });
+    } catch (err) {
+        res.status(500).json({ 'status': 500 , 'message': err.message });
+    }
+}
+
 const Delete = async (req, res) => {
     const Conn = await Ausbildung();
     const { id } = req.params;
@@ -124,5 +157,6 @@ module.exports = {
     Delete,
     getAusbildung,
     insertAusbildung,
-    getLinkBy
+    getLinkBy,
+    saveAusbildung
 }
