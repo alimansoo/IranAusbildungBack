@@ -15,4 +15,7 @@ router.route('/:id')
 router.route('/like/:q')
     .get(Controller.getLinkBy)
 
+router.route('/save')
+    .post(Controller.saveAusbildung)
+
 module.exports = router;

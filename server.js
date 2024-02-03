@@ -47,7 +47,8 @@ app.use('/logout', require('./routes/logout'));
 app.use('/users', require('./routes/api/users'));
 app.use('/tags', require('./routes/api/tags'));
 app.use('/blogs', require('./routes/api/blog')); 
-app.use('/ausbildungs', require('./routes/api/ausbildungs')); 
+app.use('/ausbildungs', require('./routes/api/ausbildungs'));
+app.use('/cover_letter', require('./routes/api/cover_letter'));
 
 // app.use(verifyJWT);
 app.use('/employees', require('./routes/api/employees'));
