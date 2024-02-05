@@ -1,8 +1,8 @@
 const { ObjectId } = require('mongodb');
-const YourFeature = require('../model/Features');
+const Feature = require('../model/Features');
 
-const getAllYourFeatures = async (req, res) => {
-    const Conn = YourFeature();
+const getAllFeatures = async (req, res) => {
+    const Conn = Feature();
 
     const datas = (await Conn).find({});
     datas.toArray().then( data =>{
@@ -13,10 +13,11 @@ const getAllYourFeatures = async (req, res) => {
     })
 }
 
-const insertYourFeature = async (req, res) => {
-    const Conn = YourFeature();
+const insertFeature = async (req, res) => {
+    const Conn = Feature();
 
-    const { 
+    const {
+        user_id,
         type,
         delivery_date,
         status, 
@@ -24,6 +25,7 @@ const insertYourFeature = async (req, res) => {
     } = req.body;
 
     if (
+        !user_id ||
         !type ||
         !delivery_date ||
         !status
@@ -31,6 +33,7 @@ const insertYourFeature = async (req, res) => {
 
     try {
         await (await Conn).insertOne({ 
+            user_id,
             type,
             delivery_date,
             status, 
@@ -44,7 +47,7 @@ const insertYourFeature = async (req, res) => {
 }
 
 const Delete = async (req, res) => {
-    const Conn = await YourFeature();
+    const Conn = await Feature();
     const { id } = req.params;
 
     if (!id) return res.status(400).json({ "message": 'ID required' });
@@ -62,8 +65,8 @@ const Delete = async (req, res) => {
     })
 }
 
-const getYourFeature = async (req, res) => {
-    const Conn = await YourFeature();
+const getFeature = async (req, res) => {
+    const Conn = await Feature();
 
     if (!req?.params?.id) return res.status(400).json({ "message": 'ID required' });
     const data = await Conn.findOne({ _id: new ObjectId(req?.params?.id) });
@@ -74,8 +77,8 @@ const getYourFeature = async (req, res) => {
 }
 
 module.exports = {
-    getAllYourFeatures,
+    getAllFeatures,
     Delete,
-    getYourFeature,
-    insertYourFeature
+    getFeature,
+    insertFeature
 }
