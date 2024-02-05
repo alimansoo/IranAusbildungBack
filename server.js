@@ -51,6 +51,7 @@ app.use('/ausbildungs', require('./routes/api/ausbildungs'));
 app.use('/cover_letter', require('./routes/api/cover_letter'));
 app.use('/comment', require('./routes/api/comment'));
 app.use('/ticket', require('./routes/api/ticket'));
+app.use('/feature', require('./routes/api/features'));
 
 // app.use(verifyJWT);
 app.use('/employees', require('./routes/api/employees'));
