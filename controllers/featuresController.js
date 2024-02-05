@@ -1,5 +1,5 @@
 const { ObjectId } = require('mongodb');
-const YourFeature = require('../model/YourFeatures');
+const YourFeature = require('../model/Features');
 
 const getAllYourFeatures = async (req, res) => {
     const Conn = YourFeature();
