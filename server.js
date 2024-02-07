@@ -40,6 +40,7 @@ app.use('/ausbildungs', require('./routes/api/ausbildungs'));
 app.use('/cover_letter', require('./routes/api/cover_letter'));
 app.use('/comment', require('./routes/api/comment'));
 app.use('/ticket', require('./routes/api/ticket'));
+app.use('/feature', require('./routes/api/features'));
 
 app.all('*', (req, res) => {
     res.status(404).json({ "status" : 404, "error": "404 Not Found" });
