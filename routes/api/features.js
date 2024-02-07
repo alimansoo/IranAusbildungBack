@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const featuresController = require('../../controllers/featuresController');
+const Controller = require('../../controllers/featuresController');
 
 router.route('/')
-    .get(featuresController.getAllFeatures)
-    .post(featuresController.insertFeature)
+    .get(Controller.getAll)
+    .post(Controller.insert)
 
 router.route('/:id')
-    .get(featuresController.getFeature)
-    .delete(featuresController.Delete)
+    .get(Controller.get)
+    .delete(Controller.delete)
 
 module.exports = router;
