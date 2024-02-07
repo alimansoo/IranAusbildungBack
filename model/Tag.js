@@ -1,9 +1,9 @@
 const Conn = require('../config/dbConn')
 
-const TagCollection = async () => {
-    const db = await Conn();
-    const TagCollection = db.collection('tags');
-    return TagCollection;
+const Tag = async () => {
+    const db = await Conn.connect();
+    const Collection = db.collection('tags');
+    return Collection;
 }
 
-module.exports = TagCollection;
+module.exports = Tag;

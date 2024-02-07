@@ -1,9 +1,9 @@
 const Conn = require('../config/dbConn')
 
-const TicketsCollection = async () => {
-    const db = await Conn();
-    const TicketsCollection = db.collection('tickets');
-    return TicketsCollection;
+const Tickets = async () => {
+    const db = await Conn.connect();
+    const Collection = db.collection('tickets');
+    return Collection;
 }
 
-module.exports = TicketsCollection;
+module.exports = Tickets;

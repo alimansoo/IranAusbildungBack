@@ -1,9 +1,9 @@
 const Conn = require('../config/dbConn')
 
-const CoverLetterCollection = async () => {
-    const db = await Conn();
-    const CoverLetterCollection = db.collection('resume_coverletter');
-    return CoverLetterCollection;
+const CoverLetter = async () => {
+    const db = await Conn.connect();
+    const Collection = db.collection('resume_coverletter');
+    return Collection;
 }
 
-module.exports = CoverLetterCollection;
+module.exports = CoverLetter;

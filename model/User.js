@@ -1,9 +1,9 @@
 const Conn = require('../config/dbConn')
 
-const UserCollection = async () => {
-    const db = await Conn();
-    const UserCollection = db.collection('users');
-    return UserCollection;
+const User = async () => {
+    const db = await Conn.connect();
+    const Collection = db.collection('users');
+    return Collection;
 }
 
-module.exports = UserCollection;
+module.exports = User;
