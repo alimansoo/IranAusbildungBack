@@ -1,9 +1,9 @@
 const Conn = require('../config/dbConn')
 
-const CommentCollection = async () => {
-    const db = await Conn();
-    const CommentCollection = db.collection('comments');
-    return CommentCollection;
+const Comment = async () => {
+    const db = await Conn.connect();
+    const Collection = db.collection('comments');
+    return Collection;
 }
 
-module.exports = CommentCollection;
+module.exports = Comment;

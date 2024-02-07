@@ -1,21 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const Controller = require('../../controllers/ausbildungsController');
-// const ROLES_LIST = require('../../config/roles_list');
-// const verifyRoles = require('../../middleware/verifyRoles');
 
 router.route('/')
-    .get(Controller.getAllAusbildungs)
-    .post(Controller.insertAusbildung)
+    .get(Controller.getAll)
+    .post(Controller.insert)
 
 router.route('/:id')
-    .get(Controller.getAusbildung)
-    .delete(Controller.Delete)
+    .get(Controller.get)
+    .delete(Controller.delete)
 
 router.route('/like/:q')
-    .get(Controller.getLinkBy)
+    .get(Controller.likeBy)
 
 router.route('/save')
-    .post(Controller.saveAusbildung)
+    .post(Controller.save)
 
 module.exports = router;

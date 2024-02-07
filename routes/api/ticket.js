@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const ticketController = require('../../controllers/ticketController');
+const Controller = require('../../controllers/ticketController');
 
 router.route('/')
-    .get(ticketController.getAllTickets)
-    .post(ticketController.insertTicket)
+    .get(Controller.getAll)
+    .post(Controller.insert)
 
 router.route('/:id')
-    .get(ticketController.getTicket)
-    .delete(ticketController.Delete)
+    .get(Controller.get)
+    .delete(Controller.delete)
 
 module.exports = router;

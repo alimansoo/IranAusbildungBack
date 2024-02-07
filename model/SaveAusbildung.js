@@ -1,9 +1,9 @@
 const Conn = require('../config/dbConn')
 
-const SaveAusbildungCollection = async () => {
-    const db = await Conn();
-    const SaveAusbildungCollection = db.collection('saved_ausbildung');
-    return SaveAusbildungCollection;
+const SaveAusbildung = async () => {
+    const db = await Conn.connect();
+    const Collection = db.collection('saved_ausbildung');
+    return Collection;
 }
 
-module.exports = SaveAusbildungCollection;
+module.exports = SaveAusbildung;

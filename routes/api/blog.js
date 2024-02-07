@@ -1,17 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const blogsController = require('../../controllers/blogsController');
-// const ROLES_LIST = require('../../config/roles_list');
-// const verifyRoles = require('../../middleware/verifyRoles');
+const Controller = require('../../controllers/blogsController');
 
 router.route('/')
-    .get(blogsController.getAllBlogs)
-    .post(blogsController.insertBlog)
-    //.get(verifyRoles(ROLES_LIST.Admin), blogsController.getAllUsers)
-    // .delete(verifyRoles(ROLES_LIST.Admin), blogsController.deleteUser);
+    .get(Controller.getAll)
+    .post(Controller.insert)
 
 router.route('/:id')
-    .get(blogsController.getBlog)
-    .delete(blogsController.deleteBlog)
+    .get(Controller.get)
+    .delete(Controller.delete)
 
 module.exports = router;

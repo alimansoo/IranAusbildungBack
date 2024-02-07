@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const consultancyController = require('../../controllers/consultancyController');
+const Controller = require('../../controllers/consultancyController');
 
 router.route('/')
-    .get(consultancyController.getAllConsultancies)
-    .post(consultancyController.insertConsultancy)
+    .get(Controller.getAll)
+    .post(Controller.insert)
 
 router.route('/:id')
-    .get(consultancyController.getConsultancy)
-    .delete(consultancyController.Delete)
+    .get(Controller.get)
+    .delete(Controller.delete)
 
 module.exports = router;
